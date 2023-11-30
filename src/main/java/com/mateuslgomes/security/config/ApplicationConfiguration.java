@@ -39,7 +39,7 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    private PasswordEncoder passwordEnconder() {
+    public PasswordEncoder passwordEnconder() {
         return new BCryptPasswordEncoder();
     }
 
