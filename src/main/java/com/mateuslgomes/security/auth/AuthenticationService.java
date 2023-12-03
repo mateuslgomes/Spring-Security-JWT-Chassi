@@ -1,6 +1,7 @@
 package com.mateuslgomes.security.auth;
 
 import com.mateuslgomes.security.config.JwtService;
+import com.mateuslgomes.security.exceptions.UserAlreadyExistsException;
 import com.mateuslgomes.security.user.Role;
 import com.mateuslgomes.security.user.User;
 import com.mateuslgomes.security.user.UserRepository;
@@ -20,6 +21,9 @@ public class AuthenticationService {
     private final AuthenticationManager authenticationManager;
 
     public AuthenticationResponse register(RegisterRequest request) {
+        if (userRepository.findByEmail(request.email()).isPresent()) {
+            throw new UserAlreadyExistsException("Email already exists");
+        }
         var user = User.builder()
                 .firstName(request.firstName())
                 .lastName(request.lastName())
