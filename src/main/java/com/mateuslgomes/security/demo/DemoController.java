@@ -10,8 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class DemoController {
 
     @GetMapping
-    public ResponseEntity<String> sayHello() {
-        return ResponseEntity.ok("Hello from secure endpoint");
+    public ResponseEntity<String> sayHelloUser() {
+        return ResponseEntity.ok("This is a user endpoint");
+    }
+
+    @GetMapping("/admin")
+    public ResponseEntity<String> sayHelloAdmin() {
+        return ResponseEntity.ok("This is a Admin endpoint");
     }
 
 }
