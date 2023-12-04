@@ -3,6 +3,7 @@ package com.mateuslgomes.security.auth;
 import com.mateuslgomes.security.config.JwtService;
 import com.mateuslgomes.security.exceptions.UserAlreadyExistsException;
 import com.mateuslgomes.security.user.Role;
+import com.mateuslgomes.security.user.Status;
 import com.mateuslgomes.security.user.User;
 import com.mateuslgomes.security.user.UserRepository;
 import lombok.RequiredArgsConstructor;
@@ -30,6 +31,7 @@ public class AuthenticationService {
                 .email(request.email())
                 .password(passwordEncoder.encode(request.password()))
                 .role(Role.USER)
+                .status(Status.ACTIVE)
                 .build();
         userRepository.save(user);
 

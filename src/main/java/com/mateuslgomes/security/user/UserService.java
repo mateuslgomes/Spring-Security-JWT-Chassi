@@ -19,7 +19,8 @@ public class UserService {
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .email(user.getEmail())
-                .role(user.getRole());
+                .role(user.getRole())
+                .status(user.getStatus());
         return response.build();
     }
 
