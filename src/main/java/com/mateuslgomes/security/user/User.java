@@ -1,5 +1,6 @@
 package com.mateuslgomes.security.user;
 
+import com.mateuslgomes.security.exceptions.UserDisabledException;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 import lombok.AllArgsConstructor;
@@ -82,6 +83,9 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
+        if (Status.DISABLE.equals(status)) {
+            throw new UserDisabledException("This account is deactivated");
+        }
         return true;
     }
 
