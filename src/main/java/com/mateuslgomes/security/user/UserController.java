@@ -22,4 +22,10 @@ public class UserController {
         return ResponseEntity.ok("User successfully deactivated.");
     }
 
+    @PutMapping("/{userId}/activate")
+    public ResponseEntity<String> activateUser(@PathVariable UUID userId) {
+        userService.activateUser(userId);
+        return ResponseEntity.ok("User successfully activate.");
+    }
+
 }

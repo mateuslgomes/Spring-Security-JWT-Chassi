@@ -29,10 +29,20 @@ public class UserService {
     }
 
     @Transactional
-    public void deactivateUser(UUID id) {
-        var user = userRepository.findById(id);
+    public void deactivateUser(UUID userId) {
+        var user = userRepository.findById(userId);
         if (user.isPresent()) {
             user.get().setStatus(Status.DISABLE);
+        } else {
+            throw new ValidationException("User not found.");
+        }
+    }
+
+    @Transactional
+    public void activateUser(UUID userId) {
+        var user = userRepository.findById(userId);
+        if (user.isPresent()) {
+            user.get().setStatus(Status.ACTIVE);
         } else {
             throw new ValidationException("User not found.");
         }
