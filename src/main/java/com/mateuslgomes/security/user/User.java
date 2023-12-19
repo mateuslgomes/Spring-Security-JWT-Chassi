@@ -1,7 +1,6 @@
 package com.mateuslgomes.security.user;
 
 import com.mateuslgomes.security.exceptions.UserDisabledException;
-import com.mateuslgomes.security.token.Token;
 import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 import lombok.AllArgsConstructor;
@@ -49,9 +48,6 @@ public class User implements UserDetails {
 
     @Enumerated(EnumType.STRING)
     private Status status;
-
-    @OneToMany(mappedBy = "user")
-    private List<Token> tokens;
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
