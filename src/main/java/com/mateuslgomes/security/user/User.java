@@ -83,10 +83,7 @@ public class User implements UserDetails {
 
     @Override
     public boolean isEnabled() {
-        if (Status.DISABLE.equals(status)) {
-            throw new UserDisabledException("This account is deactivated");
-        }
-        return true;
+        return Status.ACTIVE.equals(status);
     }
 
 }
